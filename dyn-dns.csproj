@@ -22,7 +22,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="bin\Release\net8.0\config.json" />
+        <None Include="config.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
 </Project>

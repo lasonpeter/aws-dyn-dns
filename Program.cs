@@ -11,14 +11,15 @@ class Program
 {
     public static void Main(string[] args)
     {
+        //Logger initialization
         Log.Logger = new LoggerConfiguration()
-            .MinimumLevel.Verbose()
-            .WriteTo.File(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "LogFiles", "Log.txt"),
-                rollingInterval: RollingInterval.Month,
-                outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level}] {Message}{NewLine}{Exception}")
-            .CreateLogger();
-        
-        // Replace with your AWS credentials
+                    .MinimumLevel.Verbose()
+                    .WriteTo.File(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "LogFiles", "Log.txt"),
+                        rollingInterval: RollingInterval.Day,
+                        retainedFileCountLimit: 7,
+                        outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level}] {Message}{NewLine}{Exception}")
+                    .CreateLogger();
+        //Config loading
         TextReader textReader = new StreamReader("config.json");
         Config? config =  JsonConvert.DeserializeObject<Config>(textReader.ReadToEnd());
         AWSCredentials credentials = new BasicAWSCredentials(config.AccessKey,config.SecretKey);
@@ -28,9 +29,9 @@ class Program
         TextReader te = new StreamReader(we);
         var res = new ResourceRecordSet
         {
-            Name = config.Domain, // Your domain name
-            Type = RRType.A,
-            TTL = 60, // Time to live in seconds
+            Name = config.Domain, // Domain name
+            Type = RRType.A, // A record name
+            TTL = 60, // TTL  in seconds
             ResourceRecords = 
             {
                 new ResourceRecord
