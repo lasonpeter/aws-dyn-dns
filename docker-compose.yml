@@ -1,0 +1,6 @@
+﻿services:
+  dyn-dns:
+    image: dyn-dns
+    build:
+      context: .
+      dockerfile: Dockerfile
