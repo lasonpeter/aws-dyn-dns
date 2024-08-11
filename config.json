@@ -1,0 +1,6 @@
+{
+  "AccessKey": "accesskey",
+  "SecretKey": "secretKey",
+  "Domain": "domainnametoupdate",
+  "HostedZoneId" : "hostedzoneid"
+}
