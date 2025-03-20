@@ -1,4 +1,4 @@
-# Dynamic DNS update script for [AWS Route 53](aws.amazon.com/route53)
+# Dynamic DNS update script for [AWS Route 53](https://aws.amazon.com/route53/)
 
 ## Usage
 Set AWS Route 53 credentials and information in config.json then execute the program
